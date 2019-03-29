@@ -206,9 +206,9 @@ public class main {
             }
             for (int k=0;k<node.length;k++){
                 if (node[k].getPrenode()==null){
-                    System.out.print("node"+node[k].getNum()+"到node1的距离："+node[k].getDistance()+" 无前结点。");
+                    System.out.print("\tnode"+node[k].getNum()+"到起始点的距离："+node[k].getDistance()+" 无前结点。");
                 }else{
-                    System.out.print("node"+node[k].getNum()+"到node1的距离："+node[k].getDistance()+"，前结点："+node[k].getPrenode().getNum()+"。");
+                    System.out.print("\tnode"+node[k].getNum()+"到起始点的距离："+node[k].getDistance()+"，前结点："+node[k].getPrenode().getNum()+"。");
                 }
             }
             //2.找出最短距离和前结点
@@ -223,11 +223,11 @@ public class main {
             for (int k=0;k<node.length;k++){
                 if (node[k].isVisited()==false){
                     if (node[k].getDistance()==temp){
-                        System.out.print("，最短距离"+node[k].getDistance());
+                        System.out.print("\t最短距离"+node[k].getDistance());
                         minDis=temp;
                         //3.添加该结点
                         node[k].setVisited(true);
-                        System.out.print(",添加结点"+node[k].getNum());
+                        System.out.print("\t添加结点"+node[k].getNum());
                         //System.out.println("为newNode"+newNode[k].getNum()+"设置前结点"+minNode.getNum());
                         minNode=node[k];
                     }
