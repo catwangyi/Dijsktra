@@ -1,7 +1,8 @@
+import sun.reflect.generics.tree.Tree;
+
 import java.io.BufferedWriter;
-import java.io.File;
+
 import java.io.FileWriter;
-import java.io.IOException;
 
 /**
  * @author wang
@@ -10,19 +11,12 @@ import java.io.IOException;
  **/
 public class main {
     public static void main(String[] args) {
-        Tree tree=new Tree();
         Node [] node;//声明对象数组
         node=new Node[6];//创建对象数组
         for (int i=0;i<6;i++){
             node[i]=new Node();
             node[i].setNum((i+1));
         }
-        /*Node [] newNode;//路由转发表
-        newNode=new Node[6];
-        for (int i=0;i<newNode.length;i++){
-            newNode[i]=new Node();
-            newNode[i].setNum(i+1);
-        }*/
         for (int i=0;i<6;i++){
             switch (i+1){
                 case 1:
@@ -185,11 +179,6 @@ public class main {
         int minDis=0;
         Node minNode=new Node();
         minNode=node[0];
-        Tree tempTree=new Tree();
-        tree.setNode(node[0]);
-        tree.setRightChild(null);
-        tree.setLeftChild(null);
-        tempTree=tree;
         node[0].setVisited(true);
         for (int i=0;i<node.length;i++){
             //1.设置前结点、最短距离
@@ -206,9 +195,9 @@ public class main {
             }
             for (int k=0;k<node.length;k++){
                 if (node[k].getPrenode()==null){
-                    System.out.print("\tnode"+node[k].getNum()+"到起始点的距离："+node[k].getDistance()+" 无前结点。");
+                    System.out.print("\t结点"+node[k].getNum()+"到起始点的距离："+node[k].getDistance()+" 无前结点。");
                 }else{
-                    System.out.print("\tnode"+node[k].getNum()+"到起始点的距离："+node[k].getDistance()+"，前结点："+node[k].getPrenode().getNum()+"。");
+                    System.out.print("\t结点"+node[k].getNum()+"到起始点的距离："+node[k].getDistance()+"，前结点："+node[k].getPrenode().getNum()+"。");
                 }
             }
             //2.找出最短距离和前结点
@@ -227,7 +216,7 @@ public class main {
                         minDis=temp;
                         //3.添加该结点
                         node[k].setVisited(true);
-                        System.out.print("\t添加结点"+node[k].getNum());
+                        System.out.print("\t纳入结点"+node[k].getNum());
                         //System.out.println("为newNode"+newNode[k].getNum()+"设置前结点"+minNode.getNum());
                         minNode=node[k];
                     }
@@ -235,7 +224,7 @@ public class main {
             }
             System.out.println();
         }
-        Node tempNode=new Node();
+        Node tempNode;
             for (int j=0;j<node.length;j++){
                 tempNode=node[j];
                     if (tempNode.getPrenode()!=null){
@@ -244,7 +233,7 @@ public class main {
                         }
                         System.out.println("目的："+node[j].getNum()+"端口："+tempNode.getNum());
                     }else {
-                        System.out.println("node"+tempNode.getNum()+"没有前结点");
+                        System.out.println("结点"+tempNode.getNum()+"没有前结点");
                     }
             }
 
